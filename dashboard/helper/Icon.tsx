@@ -1,0 +1,98 @@
+import React from "react";
+import {
+  LayoutDashboard,
+  CalendarArrowUp,
+  Table,
+  ShoppingBag,
+  Package,
+  Store,
+  CalendarRange,
+  ChartNoAxesCombined,
+  Settings,
+  ContactRound,
+  School,
+  User,
+  EthernetPort,
+  Dot,
+  X,
+  Menu,
+  SquareUserRound,
+  CircleUser,
+  LogOut,
+  Bell,
+  ShoppingBasket,
+  EllipsisVertical,
+  BadgeDollarSign,
+  Truck,
+  HandPlatter,
+  Bike,
+  Contact,
+  FileChartColumn,
+  CircleDollarSign,
+  Box,
+  CalendarCheck2,
+  BriefcaseBusiness,
+  ChevronUp,
+  ChevronDown,
+  Trash2,
+  Pencil,
+  Eye,
+  ChevronRight,
+  CirclePlus,
+  Search,
+} from "lucide-react";
+
+type IconProps = {
+  name: string;
+};
+
+const Icons: { [key: string]: IconType } = {
+  LayoutDashboard,
+  CalendarArrowUp,
+  Table,
+  ShoppingBag,
+  Package,
+  Store,
+  CalendarRange,
+  ChartNoAxesCombined,
+  Settings,
+  ContactRound,
+  School,
+  User,
+  EthernetPort,
+  Dot,
+  X,
+  Menu,
+  SquareUserRound,
+  CircleUser,
+  LogOut,
+  Bell,
+  ShoppingBasket,
+  EllipsisVertical,
+  BadgeDollarSign,
+  Truck,
+  HandPlatter,
+  Bike,
+  Contact,
+  FileChartColumn,
+  CircleDollarSign,
+  Box,
+  BriefcaseBusiness,
+  CalendarCheck2,
+  ChevronUp,
+  ChevronDown,
+  Trash2,
+  Pencil,
+  Eye,
+  ChevronRight,
+  CirclePlus,
+  Search,
+};
+
+const Icon = ({ name }: IconProps) => {
+  const IconComponent = Icons[name];
+
+  return IconComponent ? <IconComponent /> : <span>Icon not found</span>;
+};
+
+export default Icon;
