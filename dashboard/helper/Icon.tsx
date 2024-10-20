@@ -40,6 +40,8 @@ import {
   ChevronRight,
   CirclePlus,
   Search,
+  FolderClosed,
+  LockKeyholeOpen,
 } from "lucide-react";
 
 type IconProps = {
@@ -87,6 +89,8 @@ const Icons: { [key: string]: IconType } = {
   ChevronRight,
   CirclePlus,
   Search,
+  FolderClosed,
+  LockKeyholeOpen,
 };
 
 const Icon = ({ name }: IconProps) => {

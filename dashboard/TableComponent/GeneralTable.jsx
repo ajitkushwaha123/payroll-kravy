@@ -1,41 +1,47 @@
 "use client";
 import { Avatar } from "@nextui-org/avatar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import {
+  Pagination,
+  PaginationItem,
+  PaginationCursor,
+} from "@nextui-org/pagination";
 import Icon from "@/helper/Icon";
+import Link from "next/link";
 
-const GeneralTable = () => {
+const GeneralTable = ({ users, columns, statusOptions, btnText , btnLink}) => {
   const [input, setInput] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState("Select Status");
+  const [selectedStatus, setSelectedStatus] = useState("select-status");
+  const [page, setPage] = useState(1);
+  const itemsPerPage = 10;
 
-  const columns = [
-    { name: "ID", uid: "id", sortable: true },
-    { name: "Employee Name", uid: "name", sortable: true },
-    { name: "Department", uid: "department", sortable: true },
-    { name: "Designation", uid: "designation", sortable: true },
-    { name: "Job Type", uid: "jobType" },
-    { name: "Status", uid: "status", sortable: true },
-    { name: "Actions", uid: "actions" },
-  ];
-
-  const statusOptions = [
-    { name: "Permanent", uid: "permanent", color: "primary" },
-    { name: "Intern", uid: "intern", color: "success" },
-    { name: "Notice Period", uid: "notice-period", color: "danger" },
-  ];
+  const handleNewPage = (newPage) => {
+    setPage(newPage);
+  };
 
   const filteredData = users.filter((user) => {
+    if (input === "" && selectedStatus !== "select-status")
+      return user.status === selectedStatus;
+
     return (
-      (input === "" || user.name.toLowerCase().includes(input.toLowerCase())) ||
-      (user.status === selectedStatus)
+      input === "" ||
+      user.name.toLowerCase().includes(input.toLowerCase()) ||
+      user.status === selectedStatus
     );
   });
 
+  const paginatedData = filteredData.slice(
+    (page - 1) * itemsPerPage,
+    page * itemsPerPage
+  );
+
   const handleChange = (e) => {
     setSelectedStatus(e.target.value);
+    setPage(1);
   };
 
   return (
-    <div className="flex bg-white rounded-xl flex-col">
+    <div className="flex bg-white rounded-xl flex-col mb-10">
       <div className="flex justify-between py-4 px-5 items-center">
         <div className="flex justify-center w-[400px] rounded-md px-2 items-center border-2">
           <input
@@ -59,6 +65,7 @@ const GeneralTable = () => {
               onChange={(e) => handleChange(e)}
               className="rounded-md border-primary px-4 py-2"
             >
+              <option value="select-status">Select Status</option>
               {statusOptions.map((status) => (
                 <option key={status.uid} value={status.uid}>
                   {status.name}
@@ -66,10 +73,12 @@ const GeneralTable = () => {
               ))}
             </select>
           </button>
-          <button className="bg-primary ml-5 flex justify-center items-center text-white px-4 py-2 rounded-md text-md font-medium">
-            <Icon name="CirclePlus" />
-            <span className="ml-3 text-md">Add New Employee</span>
-          </button>
+
+          <Link href={btnLink}>
+            <button className="text-md font-medium bg-primary text-white rounded-md px-4 py-2 ml-2">
+              {btnText}
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -92,7 +101,7 @@ const GeneralTable = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {filteredData.map((person) => (
+                {paginatedData.map((person) => (
                   <tr key={person.email}>
                     {columns.map((item) => {
                       return (
@@ -162,271 +171,19 @@ const GeneralTable = () => {
           </div>
         </div>
       </div>
+
+      <div className="flex justify-center py-4 px-5 items-center">
+        <Pagination
+          isCompact
+          showControls
+          showShadow
+          total={Math.ceil(filteredData.length / itemsPerPage)}
+          onChange={handleNewPage}
+          initialPage={page}
+        />
+      </div>
     </div>
   );
 };
 
 export default GeneralTable;
-
-const users = [
-  {
-    id: 1,
-    name: "Tony Reichert",
-    role: "CEO",
-    team: "Management",
-    status: "permanent",
-    age: "29",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
-    email: "tony.reichert@example.com",
-    department: "Executive",
-    designation: "Chief Executive Officer",
-    jobType: "in-office",
-  },
-  {
-    id: 2,
-    name: "Zoey Lang",
-    role: "Tech Lead",
-    team: "Development",
-    status: "intern",
-    age: "25",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-    email: "zoey.lang@example.com",
-    department: "Engineering",
-    designation: "Technical Lead",
-    jobType: "remote",
-  },
-  {
-    id: 3,
-    name: "Jane Fisher",
-    role: "Sr. Dev",
-    team: "Development",
-    status: "permanent",
-    age: "22",
-    avatar: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-    email: "jane.fisher@example.com",
-    department: "Engineering",
-    designation: "Senior Developer",
-    jobType: "hybrid",
-  },
-  {
-    id: 4,
-    name: "William Howard",
-    role: "C.M.",
-    team: "Marketing",
-    status: "notice-period",
-    age: "28",
-    avatar: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
-    email: "william.howard@example.com",
-    department: "Marketing",
-    designation: "Campaign Manager",
-    jobType: "in-office",
-  },
-  {
-    id: 5,
-    name: "Kristen Copper",
-    role: "S. Manager",
-    team: "Sales",
-    status: "permanent",
-    age: "24",
-    avatar: "https://i.pravatar.cc/150?u=a092581d4ef9026700d",
-    email: "kristen.cooper@example.com",
-    department: "Sales",
-    designation: "Sales Manager",
-    jobType: "remote",
-  },
-  {
-    id: 6,
-    name: "Brian Kim",
-    role: "P. Manager",
-    team: "Management",
-    age: "29",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
-    email: "brian.kim@example.com",
-    status: "permanent",
-    department: "Project Management",
-    designation: "Project Manager",
-    jobType: "hybrid",
-  },
-  {
-    id: 7,
-    name: "Michael Hunt",
-    role: "Designer",
-    team: "Design",
-    status: "intern",
-    age: "27",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e29027007d",
-    email: "michael.hunt@example.com",
-    department: "Creative",
-    designation: "Graphic Designer",
-    jobType: "remote",
-  },
-  {
-    id: 8,
-    name: "Samantha Brooks",
-    role: "HR Manager",
-    team: "HR",
-    status: "permanent",
-    age: "31",
-    avatar: "https://i.pravatar.cc/150?u=a042581f4e27027008d",
-    email: "samantha.brooks@example.com",
-    department: "Human Resources",
-    designation: "Human Resources Manager",
-    jobType: "in-office",
-  },
-  {
-    id: 9,
-    name: "Frank Harrison",
-    role: "F. Manager",
-    team: "Finance",
-    status: "notice-period",
-    age: "33",
-    avatar: "https://i.pravatar.cc/150?img=4",
-    email: "frank.harrison@example.com",
-    department: "Finance",
-    designation: "Finance Manager",
-    jobType: "hybrid",
-  },
-  {
-    id: 10,
-    name: "Emma Adams",
-    role: "Ops Manager",
-    team: "Operations",
-    status: "permanent",
-    age: "35",
-    avatar: "https://i.pravatar.cc/150?img=5",
-    email: "emma.adams@example.com",
-    department: "Operations",
-    designation: "Operations Manager",
-    jobType: "in-office",
-  },
-  {
-    id: 11,
-    name: "Brandon Stevens",
-    role: "Jr. Dev",
-    team: "Development",
-    status: "permanent",
-    age: "22",
-    avatar: "https://i.pravatar.cc/150?img=8",
-    email: "brandon.stevens@example.com",
-    department: "Engineering",
-    designation: "Junior Developer",
-    jobType: "remote",
-  },
-  {
-    id: 12,
-    name: "Megan Richards",
-    role: "P. Manager",
-    team: "Product",
-    status: "intern",
-    age: "28",
-    avatar: "https://i.pravatar.cc/150?img=10",
-    email: "megan.richards@example.com",
-    department: "Product",
-    designation: "Product Manager",
-    jobType: "hybrid",
-  },
-  {
-    id: 13,
-    name: "Oliver Scott",
-    role: "S. Manager",
-    team: "Security",
-    status: "permanent",
-    age: "37",
-    avatar: "https://i.pravatar.cc/150?img=12",
-    email: "oliver.scott@example.com",
-    department: "Security",
-    designation: "Security Manager",
-    jobType: "in-office",
-  },
-  {
-    id: 14,
-    name: "Grace Allen",
-    role: "M. Specialist",
-    team: "Marketing",
-    status: "permanent",
-    age: "30",
-    avatar: "https://i.pravatar.cc/150?img=16",
-    email: "grace.allen@example.com",
-    department: "Marketing",
-    designation: "Marketing Specialist",
-    jobType: "remote",
-  },
-  {
-    id: 15,
-    name: "Noah Carter",
-    role: "IT Specialist",
-    team: "I. Technology",
-    status: "intern",
-    age: "31",
-    avatar: "https://i.pravatar.cc/150?img=15",
-    email: "noah.carter@example.com",
-    department: "Information Technology",
-    designation: "IT Specialist",
-    jobType: "hybrid",
-  },
-  {
-    id: 16,
-    name: "Ava Perez",
-    role: "Manager",
-    team: "Sales",
-    status: "permanent",
-    age: "29",
-    avatar: "https://i.pravatar.cc/150?img=20",
-    email: "ava.perez@example.com",
-    department: "Sales",
-    designation: "Sales Manager",
-    jobType: "in-office",
-  },
-  {
-    id: 17,
-    name: "Liam Johnson",
-    role: "Data Analyst",
-    team: "Analysis",
-    status: "permanent",
-    age: "28",
-    avatar: "https://i.pravatar.cc/150?img=33",
-    email: "liam.johnson@example.com",
-    department: "Data Analysis",
-    designation: "Data Analyst",
-    jobType: "remote",
-  },
-  {
-    id: 18,
-    name: "Sophia Taylor",
-    role: "QA Analyst",
-    team: "Testing",
-    status: "permanent",
-    age: "27",
-    avatar: "https://i.pravatar.cc/150?img=29",
-    email: "sophia.taylor@example.com",
-    department: "Quality Assurance",
-    designation: "QA Analyst",
-    jobType: "hybrid",
-  },
-  {
-    id: 19,
-    name: "Lucas Harris",
-    role: "Administrator",
-    team: "Information Technology",
-    status: "intern",
-    age: "32",
-    avatar: "https://i.pravatar.cc/150?img=50",
-    email: "lucas.harris@example.com",
-    department: "Information Technology",
-    designation: "System Administrator",
-    jobType: "in-office",
-  },
-  {
-    id: 20,
-    name: "Mia Robinson",
-    role: "Coordinator",
-    team: "Operations",
-    status: "permanent",
-    age: "26",
-    avatar: "https://i.pravatar.cc/150?img=45",
-    email: "mia.robinson@example.com",
-    department: "Operations",
-    designation: "Operations Coordinator",
-    jobType: "remote",
-  },
-];

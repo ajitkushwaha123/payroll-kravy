@@ -33,12 +33,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
 
-  const pages = [
-    { name: "Dashboard", href: "#", current: false },
-    { name: "All Employee", href: "#", current: true },
-    { name: "Add Employee", href: "#", current: false },
-  ];
-  
   return (
     <html suppressHydrationWarning lang="en">
       <head />
