@@ -73,16 +73,25 @@ const Page = () => {
       </div>
       <div>
         {currentTab === 0 ? (
-          <PersonalForm data={formik.values} onUpdateData={handleFormUpdate} />
+          <PersonalForm
+            data={formik.values}
+            onUpdateData={handleFormUpdate}
+            editable={true}
+          />
         ) : currentTab === 1 ? (
           <ProfessionalForm
             data={formik.values}
             onUpdateData={handleFormUpdate}
+            editable={true}
           />
         ) : currentTab === 2 ? (
           <DocumentForm data={formik.values} onUpdateData={handleFormUpdate} />
         ) : (
-          <SocialForm data={formik.values} onUpdateData={handleFormUpdate} />
+          <SocialForm
+            data={formik.values}
+            onUpdateData={handleFormUpdate}
+            editable={true}
+          />
         )}
       </div>
 

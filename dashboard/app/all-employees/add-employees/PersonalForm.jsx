@@ -3,7 +3,7 @@ import TextField from "@/components/reuseableComponent/TextField";
 import Dropdown from "../../../components/reuseableComponent/Dropdown";
 import { personalField } from "@/constants";
 
-const PersonalForm = ({ data, onUpdateData }) => {
+const PersonalForm = ({ data, onUpdateData , editable=true }) => {
   console.log(data);
 
   const handleInputChange = (index, value) => {
@@ -23,6 +23,7 @@ const PersonalForm = ({ data, onUpdateData }) => {
                 title={item?.title}
                 onInputChange={(values) => handleInputChange(item?.id, values)}
                 value={data[item?.id]}
+                editable={editable}
               />
             ) : (
               <TextField
@@ -30,6 +31,7 @@ const PersonalForm = ({ data, onUpdateData }) => {
                 type={item?.type}
                 onInputChange={(values) => handleInputChange(item?.id, values)}
                 input={data[item?.id]}
+                editable={editable}
               />
             )}
           </div>

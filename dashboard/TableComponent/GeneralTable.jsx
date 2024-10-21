@@ -3,13 +3,13 @@ import { Avatar } from "@nextui-org/avatar";
 import React, { useEffect, useState } from "react";
 import {
   Pagination,
-  PaginationItem,
-  PaginationCursor,
 } from "@nextui-org/pagination";
 import Icon from "@/helper/Icon";
 import Link from "next/link";
+import PriceFormatter from "@/helper/PriceFormatter";
 
-const GeneralTable = ({ users, columns, statusOptions, btnText , btnLink}) => {
+
+const GeneralTable = ({ users, columns, statusOptions, btnText , btnLink , search=false}) => {
   const [input, setInput] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("select-status");
   const [page, setPage] = useState(1);
@@ -42,7 +42,7 @@ const GeneralTable = ({ users, columns, statusOptions, btnText , btnLink}) => {
 
   return (
     <div className="flex bg-white rounded-xl flex-col mb-10">
-      <div className="flex justify-between py-4 px-5 items-center">
+      {search ? <div className="flex justify-between py-4 px-5 items-center">
         <div className="flex justify-center w-[400px] rounded-md px-2 items-center border-2">
           <input
             onChange={(e) => setInput(e.target.value)}
@@ -50,9 +50,6 @@ const GeneralTable = ({ users, columns, statusOptions, btnText , btnLink}) => {
             type="text"
           />
           <button
-            onClick={() => {
-              searchFunction();
-            }}
             className="px-3 border-2 rounded-md text-primary"
           >
             Search
@@ -80,7 +77,7 @@ const GeneralTable = ({ users, columns, statusOptions, btnText , btnLink}) => {
             </button>
           </Link>
         </div>
-      </div>
+      </div>: null}
 
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -138,26 +135,30 @@ const GeneralTable = ({ users, columns, statusOptions, btnText , btnLink}) => {
                               </div>
                             </td>
                           ) : item.uid === "name" ? (
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="flex items-center">
-                                <div className="flex-shrink-0 h-10 w-10">
-                                  <Avatar
-                                    isBordered
-                                    color="default"
-                                    src={person.avatar}
-                                  />
-                                </div>
+                            <td className="px-6 cursor-pointer py-4 whitespace-nowrap">
+                              <Link href={"/all-employees/view-employee"}>
+                                <div className="flex items-center">
+                                  <div className="flex-shrink-0 h-10 w-10">
+                                    <Avatar
+                                      isBordered
+                                      color="default"
+                                      src={person.avatar}
+                                    />
+                                  </div>
 
-                                <div className="ml-4">
-                                  <div className="text-sm ml-7 font-medium text-gray-900">
-                                    {person.name}
-                                  </div>
-                                  <div className="text-sm ml-7 text-gray-500">
-                                    {person.email}
+                                  <div className="ml-4">
+                                    <div className="text-sm ml-7 font-medium text-gray-900">
+                                      {person.name}
+                                    </div>
+                                    <div className="text-sm ml-7 text-gray-500">
+                                      {person.email}
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
+                              </Link>
                             </td>
+                          ) : item?.money === true ? (
+                            <div> <PriceFormatter price={person[item.uid]} /> </div>
                           ) : (
                             <div>{person[item.uid]}</div>
                           )}

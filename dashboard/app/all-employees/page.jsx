@@ -12,6 +12,7 @@ const AllEmployees = () => {
           statusOptions={statusOptions}
           btnText={"Add New Employee"}
           btnLink={"/all-employees/add-employees"}
+          search={true}
         />
       </div>
     </div>

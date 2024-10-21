@@ -4,7 +4,7 @@ import TextField from "@/components/reuseableComponent/TextField";
 import Dropdown from "../../../components/reuseableComponent/Dropdown";
 import { professionalField } from "@/constants";
 
-const ProfessionalForm = ({ data, onUpdateData }) => {
+const ProfessionalForm = ({ data, onUpdateData , editable=true }) => {
   const handleInputChange = (index, value) => {
     const updatedData = { ...data, [index]: value };
     console.log("updatedData", updatedData);
@@ -22,6 +22,7 @@ const ProfessionalForm = ({ data, onUpdateData }) => {
                 title={item?.title}
                 value={data[item?.id]}
                 onInputChange={(values) => handleInputChange(item?.id, values)}
+                editable={editable}
               />
             ) : (
               <TextField
@@ -29,6 +30,7 @@ const ProfessionalForm = ({ data, onUpdateData }) => {
                 type={item?.type}
                 input={data[item?.id]}
                 onInputChange={(values) => handleInputChange(item?.id, values)}
+                editable={editable}
               />
             )}
           </div>

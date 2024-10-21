@@ -42,10 +42,14 @@ import {
   Search,
   FolderClosed,
   LockKeyholeOpen,
+  Mail,
+  FileUser,
+  Download,
 } from "lucide-react";
 
 type IconProps = {
   name: string;
+  size? : number;
 };
 
 const Icons: { [key: string]: IconType } = {
@@ -91,12 +95,15 @@ const Icons: { [key: string]: IconType } = {
   Search,
   FolderClosed,
   LockKeyholeOpen,
+  Mail,
+  FileUser,
+  Download,
 };
 
-const Icon = ({ name }: IconProps) => {
+const Icon = ({ name , size }: IconProps) => {
   const IconComponent = Icons[name];
 
-  return IconComponent ? <IconComponent /> : <span>Icon not found</span>;
+  return IconComponent ? <IconComponent size={size}/> : <span>Icon not found</span>;
 };
 
 export default Icon;

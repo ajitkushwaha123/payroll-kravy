@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@/components/reuseableComponent/TextField";
 import { socialField } from "@/constants";
 
-const SocialForm = ({data , onUpdateData}) => {
+const SocialForm = ({data , onUpdateData , editable=true}) => {
 
   const handleInputChange = (index, value) => {
     const updatedData = data;
@@ -23,6 +23,8 @@ const SocialForm = ({data , onUpdateData}) => {
                   onInputChange={(values) => {
                     handleInputChange(item?.id, values);
                   }}
+                  value={data[item?.id]}
+                  editable={editable}
                 />
               ) : (
                 <TextField
@@ -32,6 +34,8 @@ const SocialForm = ({data , onUpdateData}) => {
                   onInputChange={(values) => {
                     handleInputChange(item?.id, values);
                   }}
+                  input={data[item?.id]}
+                  editable={editable}
                 />
               )}
             </div>
