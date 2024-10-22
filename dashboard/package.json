@@ -9,6 +9,7 @@
 		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
 	},
 	"dependencies": {
+		"@dnd-kit/core": "^6.1.0",
 		"@internationalized/date": "^3.5.6",
 		"@nextui-org/avatar": "^2.0.33",
 		"@nextui-org/breadcrumbs": "^2.0.13",

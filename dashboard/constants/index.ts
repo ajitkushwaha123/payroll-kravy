@@ -1,5 +1,3 @@
-import { report } from "process";
-
 export const sideBarLinks = [
   {
     title: "Dashboard",
@@ -12,9 +10,9 @@ export const sideBarLinks = [
     link: "/all-employees",
   },
   {
-    title: "Departments",
+    title: "My Task",
     icon: "Table",
-    link: "/departments",
+    link: "/task",
   },
   {
     title: "Attendance",
@@ -26,17 +24,6 @@ export const sideBarLinks = [
     icon: "CircleDollarSign",
     link: "/payroll",
   },
-  {
-    title: "Jobs",
-    icon: "Box",
-    link: "/jobs",
-  },
-  {
-    title: "Candidates",
-    icon: "CalendarRange",
-    link: "/candidates",
-  },
-
   {
     title: "Leaves",
     icon: "BriefcaseBusiness",
@@ -169,7 +156,7 @@ export const statsData = [
     orders: 10,
     percentage: -28,
     icon: "Table",
-    bgColor: "warning-100",
+    bgColor: "primary-100",
     lastUpdated: "July 14 , 2023",
   },
   {
@@ -1617,3 +1604,368 @@ export const payrollData = [
     team: "Advisory",
   },
 ];
+
+export const holidayColumn = [
+  {
+    name: "Date",
+    uid: "date",
+    sortable: true,
+  },
+  {
+    name: "Day",
+    uid: "day",
+  },
+  {
+    name: "Holiday Name",
+    uid: "name",
+  },
+  {
+    name: "Status",
+    uid: "status",
+  },
+];
+
+export const myTaskColumn = [
+  {
+    name : "No.",
+    uid: "serialNumber",
+    sortable: true,
+  },
+  {
+    name: "Task Name",
+    uid: "taskName",
+    main : true,
+    sortable: true,
+  },
+  {
+    name: "Status",
+    uid: "status",
+  },
+  {
+    name: "Project",
+    uid: "project",
+  },
+  {
+    name: "Assignee",
+    uid: "assignee",
+  },
+  {
+    name: "Due Date",
+    uid: "dueDate",
+  },
+  {
+    name: "Priority",
+    uid: "priority",
+    status: true,
+  },
+  {
+    name: "Created At",
+    uid: "createdAt",
+  },
+  {
+    name: "Updated At",
+    uid: "updatedAt",
+  },
+  {
+    name: "Reporter",
+    uid: "reporter",
+  },
+];
+
+export const myTaskData = [
+  {
+    serialNumber: 1,
+    taskName: "Design Homepage",
+    status: "inProgress",
+    project: "Website Redesign",
+    assignee: "Alice Johnson",
+    dueDate: "2024-10-25",
+    priority: "high",
+    createdAt: "2024-10-01",
+    updatedAt: "2024-10-20",
+    reporter: "Bob Smith",
+  },
+  {
+    serialNumber: 2,
+    taskName: "Develop Login Feature",
+    status: "inReview",
+    project: "Mobile App",
+    assignee: "John Doe",
+    dueDate: "2024-10-15",
+    priority: "medium",
+    createdAt: "2024-09-20",
+    updatedAt: "2024-10-15",
+    reporter: "Jane Doe",
+  },
+  {
+    serialNumber: 3,
+    taskName: "Test Payment Gateway",
+    status: "inProgress",
+    project: "E-commerce Platform",
+    assignee: "Emily Davis",
+    dueDate: "2024-10-30",
+    priority: "high",
+    createdAt: "2024-10-05",
+    updatedAt: "2024-10-18",
+    reporter: "Michael Brown",
+  },
+  {
+    serialNumber: 4,
+    taskName: "Write User Documentation",
+    status: "done",
+    project: "Software Release",
+    assignee: "Chris Lee",
+    dueDate: "2024-11-01",
+    priority: "low",
+    createdAt: "2024-10-10",
+    updatedAt: "2024-10-21",
+    reporter: "Sarah Wilson",
+  },
+  {
+    serialNumber: 5,
+    taskName: "Optimize Database",
+    status: "todo",
+    project: "Backend Improvement",
+    assignee: "David Kim",
+    dueDate: "2024-10-20",
+    priority: "medium",
+    createdAt: "2024-09-25",
+    updatedAt: "2024-10-20",
+    reporter: "Laura Martinez",
+  },
+  {
+    serialNumber: 6,
+    taskName: "Create Marketing Plan",
+    status: "draft",
+    project: "Product Launch",
+    assignee: "Olivia Taylor",
+    dueDate: "2024-11-05",
+    priority: "high",
+    createdAt: "2024-10-15",
+    updatedAt: "2024-10-22",
+    reporter: "James Anderson",
+  },
+  {
+    serialNumber: 7,
+    taskName: "Implement Security Features",
+    status: "inProgress",
+    project: "System Upgrade",
+    assignee: "Sophia Lee",
+    dueDate: "2024-10-28",
+    priority: "high",
+    createdAt: "2024-10-05",
+    updatedAt: "2024-10-21",
+    reporter: "Daniel Harris",
+  },
+  {
+    serialNumber: 8,
+    taskName: "Conduct User Interviews",
+    status: "inReview",
+    project: "UX Research",
+    assignee: "Liam Martinez",
+    dueDate: "2024-10-27",
+    priority: "medium",
+    createdAt: "2024-10-10",
+    updatedAt: "2024-10-20",
+    reporter: "Emma Clark",
+  },
+  {
+    serialNumber: 9,
+    taskName: "Fix Bugs in Module A",
+    status: "todo",
+    project: "Bug Fixing",
+    assignee: "Noah Walker",
+    dueDate: "2024-10-29",
+    priority: "high",
+    createdAt: "2024-10-12",
+    updatedAt: "2024-10-22",
+    reporter: "Mia Robinson",
+  },
+  {
+    serialNumber: 10,
+    taskName: "Prepare Financial Report",
+    status: "done",
+    project: "Quarterly Review",
+    assignee: "Ava Lewis",
+    dueDate: "2024-10-20",
+    priority: "medium",
+    createdAt: "2024-09-30",
+    updatedAt: "2024-10-20",
+    reporter: "Ethan Young",
+  },
+  {
+    serialNumber: 11,
+    taskName: "Set Up CI/CD Pipeline",
+    status: "inProgress",
+    project: "DevOps",
+    assignee: "Isabella King",
+    dueDate: "2024-10-26",
+    priority: "high",
+    createdAt: "2024-10-08",
+    updatedAt: "2024-10-21",
+    reporter: "Lucas Scott",
+  },
+  {
+    serialNumber: 12,
+    taskName: "Design New Logo",
+    status: "draft",
+    project: "Brand Refresh",
+    assignee: "Mason Green",
+    dueDate: "2024-11-10",
+    priority: "low",
+    createdAt: "2024-10-18",
+    updatedAt: "2024-10-22",
+    reporter: "Charlotte Adams",
+  },
+  {
+    serialNumber: 13,
+    taskName: "Plan Team Building Event",
+    status: "todo",
+    project: "HR Activities",
+    assignee: "Amelia Baker",
+    dueDate: "2024-11-15",
+    priority: "medium",
+    createdAt: "2024-10-20",
+    updatedAt: "2024-10-22",
+    reporter: "Henry Nelson",
+  },
+  {
+    serialNumber: 14,
+    taskName: "Update Privacy Policy",
+    status: "inReview",
+    project: "Compliance",
+    assignee: "Harper Carter",
+    dueDate: "2024-10-31",
+    priority: "high",
+    createdAt: "2024-10-01",
+    updatedAt: "2024-10-21",
+    reporter: "Jack Mitchell",
+  },
+  {
+    serialNumber: 15,
+    taskName: "Conduct Code Review",
+    status: "inProgress",
+    project: "Code Quality",
+    assignee: "Ella Perez",
+    dueDate: "2024-10-24",
+    priority: "medium",
+    createdAt: "2024-10-12",
+    updatedAt: "2024-10-22",
+    reporter: "Alexander Roberts",
+  },
+];
+
+
+
+export const myTaskOptions = [
+  { name: "TO DO", uid: "todo", color: "default" },
+  { name: "DRAFT", uid: "draft", color: "secondary" },
+  { name: "IN PROGRESS", uid: "inProgress", color: "primary" },
+  { name: "IN REVIEW", uid: "inReview", color: "warning" },
+  { name: "DONE", uid: "done", color: "success" },
+  { name : "High" , uid : "high" , color : "danger"}, 
+  { name : "Medium" , uid : "medium" , color : "warning"}, 
+  { name : "Low" , uid : "low" , color : "primary"}
+];
+
+export const holidayOptions = [
+  { name: "Past Holidays", uid: "pastHoliday", color: "default" },
+  { name: "Upcoming", uid: "upcoming", color: "success" },
+];
+
+const today = new Date();
+
+export const holidayData = [
+  {
+    id: 1,
+    date: "January 01, 2024",
+    day: "Monday",
+    name: "New Year's Day",
+    status: new Date("January 01, 2024") > today ? "upcoming" : "pastHoliday",
+  },
+  {
+    id: 2,
+    date: "January 26, 2024",
+    day: "Friday",
+    name: "Republic Day",
+    status: new Date("January 26, 2024") > today ? "upcoming" : "pastHoliday",
+  },
+  {
+    id: 3,
+    date: "March 29, 2024",
+    day: "Friday",
+    name: "Holi",
+    status: new Date("March 29, 2024") > today ? "upcoming" : "pastHoliday",
+  },
+  {
+    id: 4,
+    date: "April 10, 2024",
+    day: "Wednesday",
+    name: "Ram Navami",
+    status: new Date("April 10, 2024") > today ? "upcoming" : "pastHoliday",
+  },
+  {
+    id: 5,
+    date: "April 14, 2024",
+    day: "Sunday",
+    name: "Dr. Ambedkar Jayanti",
+    status: new Date("April 14, 2024") > today ? "upcoming" : "pastHoliday",
+  },
+  {
+    id: 6,
+    date: "April 19, 2024",
+    day: "Friday",
+    name: "Good Friday",
+    status: new Date("April 19, 2024") > today ? "upcoming" : "pastHoliday",
+  },
+  {
+    id: 7,
+    date: "May 01, 2024",
+    day: "Wednesday",
+    name: "Labour Day",
+    status: new Date("May 01, 2024") > today ? "upcoming" : "pastHoliday",
+  },
+  {
+    id: 8,
+    date: "August 15, 2024",
+    day: "Thursday",
+    name: "Independence Day",
+    status: new Date("August 15, 2024") > today ? "upcoming" : "pastHoliday",
+  },
+  {
+    id: 9,
+    date: "October 02, 2024",
+    day: "Wednesday",
+    name: "Gandhi Jayanti",
+    status: new Date("October 02, 2024") > today ? "upcoming" : "pastHoliday",
+  },
+  {
+    id: 10,
+    date: "October 11, 2024",
+    day: "Friday",
+    name: "Dussehra",
+    status: new Date("October 11, 2024") > today ? "upcoming" : "pastHoliday",
+  },
+  {
+    id: 11,
+    date: "October 31, 2024",
+    day: "Thursday",
+    name: "Diwali",
+    status: new Date("October 31, 2024") > today ? "upcoming" : "pastHoliday",
+  },
+  {
+    id: 12,
+    date: "November 01, 2024",
+    day: "Friday",
+    name: "Diwali (Bali Pratipada)",
+    status: new Date("November 01, 2024") > today ? "upcoming" : "pastHoliday",
+  },
+  {
+    id: 13,
+    date: "December 25, 2024",
+    day: "Wednesday",
+    name: "Christmas",
+    status: new Date("December 25, 2024") > today ? "upcoming" : "pastHoliday",
+  },
+];
+

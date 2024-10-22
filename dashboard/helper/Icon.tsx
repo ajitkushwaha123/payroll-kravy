@@ -45,6 +45,9 @@ import {
   Mail,
   FileUser,
   Download,
+  MessageCircle,
+  CircleCheckBig,
+  FolderTree,
 } from "lucide-react";
 
 type IconProps = {
@@ -98,6 +101,9 @@ const Icons: { [key: string]: IconType } = {
   Mail,
   FileUser,
   Download,
+  MessageCircle,
+  CircleCheckBig,
+  FolderTree,
 };
 
 const Icon = ({ name , size }: IconProps) => {
